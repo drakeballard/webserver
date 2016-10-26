@@ -4,17 +4,25 @@ var GOODPORT = 7000;
 var BADPORT = 7500;
 
 //IMPORTANT
-function handleRequest(request, response) {
+function handleRequest1(request, response) {
   response.end('Looking Good BRO: ' + request.url);
 }
 
-var server = http.createServer(handleRequest);
+function handleRequest2(request, response) {
+  response.end('Looking shitty bro: ' + request.url);
+}
 
-server.listen(GOODPORT, function() {
-  console.log("This Server is listneing on: http://localhost:%s", PORT);
+var gserver = http.createServer(handleRequest1);
+
+
+var bserver = http.createServer(handleRequest2);
+
+
+gserver.listen(GOODPORT, function() {
+  console.log("This Server is listneing on: http://localhost:%s", GOODPORT);
 });
 
 
-server.listen(BADPORT, function() {
-  console.log("This Server is listneing on: http://localhost:%s", PORT);
+bserver.listen(BADPORT, function() {
+  console.log("This Server is listneing on: http://localhost:%s", BADPORT);
 });
